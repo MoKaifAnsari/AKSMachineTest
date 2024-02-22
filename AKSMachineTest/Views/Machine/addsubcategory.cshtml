@@ -1,0 +1,102 @@
+﻿@using System.Data;
+@using System.Text;
+@using AKSMachineTest.Models;
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="/Script/addsubcategory.js"></script>
+    <script>
+        $(document).ready(function () {
+            document.querySelectorAll('.disabledOption').forEach(option => {
+                option.disabled = true;
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div id="wrap">
+            <div class="logo"><img src="../images/logo.png" border="0"></div>
+            <div class="topmenu">
+                <ul>
+                    <li><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="/Machine/changepassword">Change Password</a>&nbsp;|</li>
+                    <li><a href="/Machine/index"><img src="../images/logout.png" width="16" height="16" border="0" align="absmiddle">&nbsp;&nbsp;Logout</a></li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </header>
+    <nav>
+        <ul id="qm0" class="qmmc">
+            <li><a href="/Machine/admin">Dashboard</a></li>
+            <li>
+                <a href="#">Product</a>
+                <ul>
+                    <li><a href="/Machine/addcategory">Add Category</a></li>
+                    <li><a href="/Machine/addsubcategory">Add  Sub Category</a></li>
+
+                    <li><a href="/Machine/product">Add Product</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="wrap">
+        <div class="clear" style="height:5px;"></div>
+        <div id="wrap2">
+            <h1>Add Sub Category</h1>
+            <br>
+
+            <div class="form-raw">
+                <input type="text" name="SubCategoryID" id="SubCategoryID"  class="hidden">
+                <div class="form-name">Select Category</div>
+                <div class="form-txtfld">
+                    <select class="form-control" id="ddlCategoryName">
+                        <option class='disabledOption'>--Select--</option>
+                        <option id="txt" hidden ></option>
+                        @if (Model != null)
+                        {
+                            foreach (System.Data.DataRow row in Model.Rows)
+                            {
+                                <option @row["CategoryName"]>@row["CategoryName"]</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="clear"></div>
+
+            <div class="form-raw">
+                <div class="form-name">Add Sub Category</div>
+                <div class="form-txtfld">
+                    <input type="text" class="form-control" id="txtAddSubCategory" placeholder="Enter Category">
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="form-raw">
+            <div class="form-name">Active</div>
+            <div class="form-txtfld">
+                <input type="checkbox" id="txtchecked" name="Active">
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="form-raw">
+            <div class="form-name">&nbsp;</div>
+            <div class="form-txtfld" style="width:290px;">
+                <button class="btn btn-primary" id="btnsave" style="margin-left:198px;">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+    <div class="clear"></div>
+    <div class="row mt-5">
+        <div id="Grid" style="overflow:auto;"></div>
+    </div>
+</body>
+</html>
